@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<!-- 
+/**
+ * Logicrays
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Logicrays
+ * @package     Logicrays_StockNotification
+ * @copyright   Copyright (c) Logicrays (https://www.logicrays.com/)
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<type name="Magento\StoreGraphQl\Model\Resolver\Store\StoreConfigDataProvider">
+    <arguments>
+        <argument name="extendedConfigData">
+            <item name="stocknotification_enable" xsi:type="string">stocknotification/general/enable</item>
+            <item name="stocknotification_customerlist" xsi:type="string">stocknotification/general/customerlist</item>
+            <item name="stocknotification_notificationtype" xsi:type="string">stocknotification/general/notificationtype</item>
+            <item name="stocknotification_sender_email_identity" xsi:type="string">stocknotification/general/sender_email_identity</item>
+            <item name="stocknotification_admin_email_notification" xsi:type="string">stocknotification/general/admin_email_notification</item>
+            <item name="stocknotification_email_template" xsi:type="string">stocknotification/general/email_template</item>
+            <item name="stocknotification_email_template_admin" xsi:type="string">stocknotification/general/email_template_admin</item>
+            <item name="stocknotification_email_template_instock" xsi:type="string">stocknotification/general/email_template_instock</item>
+            <item name="stocknotification_smsmsg91senderid" xsi:type="string">stocknotification/smsgatways/smsmsg91senderid</item>
+            <item name="stocknotification_smsmsg91authkey" xsi:type="string">stocknotification/smsgatways/smsmsg91authkey</item>
+            <item name="stocknotification_smsmsg91apiurl" xsi:type="string">stocknotification/smsgatways/smsmsg91apiurl</item>
+            <item name="stocknotification_template" xsi:type="string">stocknotification/smsgatways/template</item>
+            <item name="stocknotification_enableadmin" xsi:type="string">stocknotification/smsgatways/enableadmin</item>
+            <item name="stocknotification_mobilenumber" xsi:type="string">stocknotification/smsgatways/mobilenumber</item>
+            <item name="stocknotification_admintemplate" xsi:type="string">stocknotification/smsgatways/admintemplate</item>
+            <item name="stocknotification_notification_title" xsi:type="string">stocknotification/frontlable/notification_title</item>
+            <item name="stocknotification_button_title" xsi:type="string">stocknotification/frontlable/button_title</item>
+            <item name="stocknotification_sucsess_message" xsi:type="string">stocknotification/frontlable/sucsess_message</item>
+        </argument>
+    </arguments>
+</type>
+</config>

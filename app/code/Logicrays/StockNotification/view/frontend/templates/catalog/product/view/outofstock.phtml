@@ -1,0 +1,228 @@
+<?php
+/**
+ * Logicrays
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Logicrays
+ * @package     Logicrays_StockNotification
+ * @copyright   Copyright (c) Logicrays (https://www.logicrays.com/)
+ */
+
+$_product = $block->getProduct();
+$viewModel = $block->getData('view_model');
+$helper = $viewModel->getHelperData();
+$Customergroup = explode(',', $helper->getCustomerGroup());
+$customerSession = $viewModel->getCustomerData();
+$customerData = $customerSession->getCustomer()->getGroupId();
+$collection = $viewModel->getStocknotificationRowData();
+
+if ($customerSession->isLoggedIn()) {
+    $customeremail = $customerSession->getCustomer()->getEmail();
+}
+
+if (isset($customeremail)) {
+    $pending = $collection->addFieldToFilter('subscriber_email', $customeremail);
+    foreach ($pending as $key => $pendingdata) {
+        $customermobile = $pendingdata->getSubscriberMobile();
+    }
+}
+
+$buttonTitle = "Notify";
+$notificationtitle = "Notify your interest";
+if ($helper->getNotificationTitle()) {
+    $notificationtitle = $helper->getNotificationTitle();
+}
+
+if ($helper->getNotificationButton()) {
+    $buttonTitle = $helper->getNotificationButton();
+}
+
+if ($helper->isEnabled()) {
+    if ($customerSession->isLoggedIn()) {
+        if (in_array($customerData, $Customergroup)) {
+            if (!$_product->isSaleable()) { ?>
+                <div class="" id="outofstock-modal">
+                    <div class="modal-body">
+                        <div class="modal-inner-shadow">
+                            <h3 class="text text-center"><?= $escaper->escapeHtml($notificationtitle) ?></h3>
+                            <div class="content">
+                                <form action="<?= $escaper->
+                                        escapeHtml($block->getUrl('stocknotification/stocknotification/index')) ?>"
+                                        method="post"
+                                        class="form notify"
+                                        id="form-validate"
+                                        data-mage-init='{"validation":{}}'
+                                        enctype="multipart/form-data">
+
+                                    <fieldset class="fieldset" data-hasrequired="<?= ('* Required Fields') ?>">
+                                        <input type="hidden" name="product_id" id="product_id"
+                                        value="<?= $escaper->escapeHtml($_product->getId()) ?>" />
+
+                                        <input type="hidden" name="product_name" id="product_name"
+                                        value="<?= $escaper->escapeHtml($_product->getName()) ?>" />
+
+                                        <input type="hidden" name="product_sku" id="product_sku"
+                                        value="<?= $escaper->escapeHtml($_product->getSku()) ?>" />
+
+                                        <?= $block->getBlockHtml('formkey')?>
+                                        <div class="field note"><p>Please enter your email address below, 
+                                            you will recieve an email when this
+                                            <?= $block->escapeHtml(__('Product')); ?>
+                                            become available.</p>
+                                        </div>
+                                        <div class="form-group email required">
+                                            <label for="email" class="label">
+                                                <span><?= $block->escapeHtml(__('Email')); ?></span>
+                                            </label>
+                                            <div class="control">
+                                                <?php
+                                                if (isset($customeremail)) { ?>
+                                                        <input type="email" name="email" alt="email" id="email_address"
+                                                        class="form-control input-text"
+                                                        data-validate="{required:true, 'validate-email':true}" 
+                                                        value="<?= $escaper->escapeHtml($customeremail) ?>" />
+                                                    <?php
+                                                } else { ?>
+                                                        <input type="email" name="email" alt="email" id="email_address"
+                                                        class="form-control input-text"
+                                                        data-validate="{required:true, 'validate-email':true}" />
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mobile required">
+                                            <label class="label">
+                                                <span><?= $block->escapeHtml(__('Mobile')); ?></span>
+                                            </label>
+                                            <div class="control">
+                                                <?php
+                                                if (isset($customermobile)) { ?>
+                                                        <input type="text" name="mobile" id="mobilenumber"
+                                                        value="<?= $escaper->escapeHtml($customermobile) ?>"
+                                                        class="form-control"
+                                                        data-validate="{required:true, 'validate-number':true}"
+                                                        minlength="10" maxlength="12">
+                                                        
+                                                <?php } else { ?>
+                                                        <input type="text" name="mobile" id="mobilenumber"
+                                                        class="form-control"
+                                                        data-validate="{required:true,'validate-number':true}"
+                                                        minlength="10" maxlength="12">
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="actions-toolbar">
+                                            <div class="primary">
+                                                <button type="submit"
+                                                        title="<?= $escaper->escapeHtml($buttonTitle) ?>"
+                                                        class="action submit primary" id="btn_submit" >
+                                                    <span><?= $escaper->escapeHtml($buttonTitle) ?></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php }
+        }
+    } else {
+        if (in_array(0, $Customergroup)) {
+            if (!$_product->isSaleable()) { ?>
+                <div class="" id="outofstock-modal">
+                    <div class="modal-body">
+                        <div class="modal-inner-shadow">
+                            <h3 class="text text-center"><?= $escaper->escapeHtml($notificationtitle) ?></h3>
+                            <div class="content">
+                                <form action="<?= $escaper->
+                                    escapeHtml($block->getUrl('stocknotification/stocknotification/index')) ?>"
+                                    method="post"
+                                    class="form notify"
+                                    id="form-validate"
+                                    data-mage-init='{"validation":{}}'
+                                    enctype="multipart/form-data">
+
+                                    <fieldset class="fieldset" 
+                                        data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
+                                        <input type="hidden" name="product_id" id="product_id"
+                                        value="<?= $escaper->escapeHtml($_product->getId()) ?>" />
+
+                                        <input type="hidden" name="product_name" id="product_name"
+                                        value="<?= $escaper->escapeHtml($_product->getName()) ?>" />
+
+                                        <input type="hidden" name="product_sku" id="product_sku"
+                                        value="<?= $escaper->escapeHtml($_product->getSku()) ?>" />
+                                        
+                                        <?= $block->getBlockHtml('formkey')?>
+                                        <div class="field note">
+                                            <p>Please enter your email address below, you will recieve an email when
+                                                 this <?= $block->escapeHtml(__('Product')); ?> become available.</p>
+                                        </div>
+
+                                        <div class="form-group email required">
+                                            <label for="email" class="label">
+                                                <span><?= $block->escapeHtml(__('Email')); ?></span>
+                                            </label>
+                                            <div class="control">
+                                                <?php
+                                                if (isset($customeremail)) { ?>
+                                                        <input type="email" name="email" alt="email" id="email_address"
+                                                        class="form-control input-text"
+                                                        data-validate="{required:true, 'validate-email':true}"
+                                                        value="<?= $escaper->escapeHtml($customeremail) ?>" />
+                                                <?php } else { ?>
+                                                        <input type="email" name="email" alt="email" id="email_address"
+                                                        class="form-control input-text"
+                                                        data-validate="{required:true, 'validate-email':true}" />
+
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mobile required">
+                                            <label class="label">
+                                                <span><?= $block->escapeHtml(__('Mobile')); ?></span>
+                                            </label>
+                                            <div class="control">
+                                                <?php
+                                                if (isset($customermobile)) { ?>
+                                                        <input type="text" name="mobile" id="mobilenumber"
+                                                        value="<?= $escaper->escapeHtml($customermobile) ?>"
+                                                        class="form-control"
+                                                        data-validate="{required:true, 'validate-number':true}"
+                                                        minlength="10" maxlength="12">
+                                                <?php } else { ?>
+                                                        <input type="text" name="mobile" id="mobilenumber"
+                                                        class="form-control"
+                                                        data-validate="{required:true, 'validate-number':true}"
+                                                        minlength="10" maxlength="12">
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="actions-toolbar">
+                                            <div class="primary">
+                                                <button type="submit"
+                                                        title="<?= $escaper->escapeHtml($buttonTitle) ?>"
+                                                        class="action submit primary" id="btn_submit" >
+                                                    <span><?= $escaper->escapeHtml($buttonTitle) ?></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <?php }
+        }
+    }
+}
+?>

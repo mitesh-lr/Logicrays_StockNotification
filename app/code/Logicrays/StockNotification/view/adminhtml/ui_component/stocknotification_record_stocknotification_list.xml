@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * Logicrays
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Logicrays
+ * @package     Logicrays_StockNotification
+ * @copyright   Copyright (c) Logicrays (https://www.logicrays.com/)
+ */
+ -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Ui/etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">stocknotification_record_stocknotification_list.stocknotification_record_stocknotification_list_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>stocknotification_records_columns</spinner>
+        <deps>
+            <dep>stocknotification_record_stocknotification_list.stocknotification_record_stocknotification_list_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="stocknotification_record_stocknotification_list_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">stocknotification_record_stocknotification_list_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters" />
+        <massaction name="listing_massaction" 
+                    component="Magento_Ui/js/grid/tree-massactions">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Do you want to delete selected row record?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="stocknotification/stocknotification/massdelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+        <exportButton name="export_button"/>
+    </listingToolbar>
+    <columns name="stocknotification_records_columns">
+        <selectionsColumn name="ids" sortOrder="10">
+            <settings>
+                <indexField>entity_id</indexField>
+                <sorting>desc</sorting>
+            </settings>
+       </selectionsColumn>
+       <column name="entity_id" sortOrder="20">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+            </settings>
+       </column>
+       <column name="websitename" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Website Name</label>
+            </settings>
+       </column>
+       <column name="product_id" sortOrder="40">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Product Id</label>
+            </settings>
+       </column>
+       <column name="product_name" sortOrder="50">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Product Name</label>
+            </settings>
+       </column>
+       <column name="product_sku" sortOrder="60">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Product Sku</label>
+            </settings>
+       </column>
+       <column name="subscriber_name" sortOrder="70">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Subscriber Name</label>
+            </settings>
+       </column>
+       <column name="subscriber_email" sortOrder="80">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Subscriber Email</label>
+            </settings>
+       </column>
+        <column name="subscriber_mobile" sortOrder="90">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Subscriber Mobile</label>
+            </settings>
+       </column>
+       <column name="notification_status" sortOrder="100">
+           <settings>
+                <filter>text</filter>
+                <label translate="true">Notification Status</label>
+            </settings>
+       </column>
+       <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="110">
+            <settings>
+                <filter>dateRange</filter>
+                <label translate="true">Created At</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

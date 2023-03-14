@@ -1,0 +1,38 @@
+#Magento Admin Coonfiguration GraphQl Schema
+
+type StoreConfig {
+    stocknotification_enable : String @doc(description: "To fetch value of module enable or disable"),
+    stocknotification_customerlist : String @doc(description: "fetch value of customer list"),
+    stocknotification_notificationtype : String @doc(description: "fetch value of notification type"),
+    stocknotification_sender_email_identity : String @doc(description: "fetch value of sender email"),
+    stocknotification_admin_email_notification : String @doc(description: "fetch value of email notification"),
+    stocknotification_email_template : String @doc(description: "fetch value of template"),
+    stocknotification_email_template_admin : String @doc(description: "fetch value of template id for admin messages"),
+    stocknotification_email_template_instock : String @doc(description: "fetch value of template id for in stock messages"),
+    stocknotification_smsmsg91senderid : String @doc(description: "fetch value of id"),
+    stocknotification_smsmsg91authkey : String @doc(description: "fetch value of key"),
+    stocknotification_smsmsg91apiurl : String @doc(description: "fetch value of url"),
+    stocknotification_template : String @doc(description: "fetch value of template"),
+    stocknotification_enableadmin : String @doc(description: "fetch value of admin enable"),
+    stocknotification_mobilenumber : String @doc(description: "fetch value of mobile number"),
+    stocknotification_admintemplate : String @doc(description: "fetch value of admin template"),
+    stocknotification_notification_title : String @doc(description: "fetch value of notification title"),
+    stocknotification_button_title : String @doc(description: "fetch value of button title"),
+    stocknotification_sucsess_message : String @doc(description: "fetch value of sucess message")
+}
+type Mutation {
+    stockNotificationFormSubmit(input: StockNotificationFormInput!): StockNotificationFormOutput @resolver(class: "\\Logicrays\\StockNotification\\Model\\Resolver\\StockNotificationForm") @doc(description:"save into logicrays_stocknotification_records")
+}
+input StockNotificationFormInput {
+    websitename: String @doc(description: "Website Name")
+    product_id: Int @doc(description: "The Product Id")
+    product_name: String @doc(description: "The Product Name")
+    product_sku: String @doc(description: "The Product Sku")
+    subscriber_name: String @doc(description: "Customer Name if not logged in customer then Guest")
+    subscriber_email: String @doc(description: "Customer Email")
+    subscriber_mobile: Int @doc(description: "Customer Mobile")
+}
+type StockNotificationFormOutput {
+   success: String
+   message: String
+}

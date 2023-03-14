@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * Logicrays
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Logicrays
+ * @package     Logicrays_StockNotification
+ * @copyright   Copyright (c) Logicrays (https://www.logicrays.com/)
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="stocknotification_general_email_template" label="Out Of Stock Notification" file="subscribed.html" type="html" module="Logicrays_StockNotification" area="frontend"/>
+ 	<template id="stocknotification_general_email_template_admin" label="Subscribed Admin" file="subscribed_admin.html" type="html" module="Logicrays_StockNotification" area="frontend"/>
+    <template id="stocknotification_general_email_template_instock" label="Back In Stock" file="instock.html" type="html" module="Logicrays_StockNotification" area="frontend"/>
+</config>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Logicrays
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Logicrays
+ * @package     Logicrays_StockNotification
+ * @copyright   Copyright (c) Logicrays (https://www.logicrays.com/)
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="alert.urls">
+            <block class="Magento\Catalog\Block\Product\View" name="catalog.product.view.extrablock"
+                   as="extra_options" after="product.info.addtocart" template="Logicrays_StockNotification::catalog/product/view/outofstock.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Logicrays\StockNotification\ViewModel\OutOfStock</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

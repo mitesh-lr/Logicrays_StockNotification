@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Logicrays
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Logicrays
+ * @package     Logicrays_StockNotification
+ * @copyright   Copyright (c) Logicrays (https://www.logicrays.com/)
+ */
+ -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="logicrays_stocknotification_records" resource="default" engine="innodb" comment="Out of Stock Notification Data">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <column xsi:type="varchar" name="websitename" comment="Website Name" length="255" nullable="false"/>
+        <column xsi:type="varchar" name="product_id" comment="Product Id" length="255" nullable="false"/>
+        <column xsi:type="varchar" name="product_name" comment="Product Name" length="255" nullable="false"/>
+        <column xsi:type="varchar" name="product_sku" comment="Product Sku" length="255" nullable="false"/>
+        <column xsi:type="varchar" name="subscriber_name" comment="Subscriber Name" length="255" nullable="false"/>
+        <column xsi:type="varchar" name="subscriber_email" comment="Subscriber Email" length="255" nullable="false"/>
+        <column xsi:type="varchar" name="subscriber_mobile" comment="Subscriber Mobile" length="255" nullable="false"/>
+        <column xsi:type="timestamp" name="created_at" comment="Creation Time" default="CURRENT_TIMESTAMP" nullable="false"/>
+        <column xsi:type="varchar" name="notification_status" comment="Notification Status" length="255" nullable="false" default="Pending"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+         <index referenceId="LR_STOCK_NOTIFICATION_ID" indexType="fulltext">
+            <column name="websitename"/>
+            <column name="product_name"/>
+            <column name="product_sku"/>
+            <column name="subscriber_name"/>
+            <column name="subscriber_email"/>
+            <column name="subscriber_mobile"/>
+        </index>
+    </table>
+    <table name="logicrays_stocknotification_product_records" resource="default" engine="innodb" comment="Out Of Stock Notification Data Table">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Out Of Stock Notification Record Id"/>
+        <column xsi:type="varchar" name="product_id" comment="Product Id" length="255" nullable="false"/>
+        <column xsi:type="varchar" name="product_name" comment="Product Name"/>
+        <column xsi:type="varchar" name="product_sku" comment="Product Sku" length="255" nullable="false"/>
+        <column xsi:type="varchar" name="total_notification" comment="Total Notification" nullable="false"/>
+        <column xsi:type="varchar" name="pending_notification" comment="Pending Notification"/>
+        <column xsi:type="timestamp" name="created_at" comment="Creation Time" default="CURRENT_TIMESTAMP" nullable="false"/>
+        <column xsi:type="varchar" name="notification_status" comment="Notification Status" length="255" nullable="false" default="Pending"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="LR_PRODUCT_NOTIFICATION_ID" indexType="fulltext">
+            <column name="product_name"/>
+            <column name="product_sku"/>
+            <column name="total_notification"/>
+            <column name="pending_notification"/>
+        </index>
+    </table>
+</schema>

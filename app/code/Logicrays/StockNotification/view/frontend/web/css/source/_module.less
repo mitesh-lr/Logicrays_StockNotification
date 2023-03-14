@@ -1,0 +1,51 @@
+/**
+ * Logicrays
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Logicrays
+ * @package     Logicrays_StockNotification
+ * @copyright   Copyright (c) Logicrays (https://www.logicrays.com/)
+ */
+@color_1:#f0f0f0;
+@color_2:rgb(255,0,0);
+@color_3:#fff;
+.product-info-main #outofstock-modal {
+    background-color: @color_1;
+    padding: 20px 40px;
+}
+.product-info-main form.form.notify label span {
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.actions-toolbar {
+    margin-top: 20px;
+}
+
+.product-info-main form.form.notify input[type='email'],
+.product-info-main form.form.notify input[type='text'] {
+    height: 40px;
+}
+
+.stock.unavailable {
+    float: right;
+    width: 100%;
+}
+.stock.unavailable span {
+    background-color: @color_2;
+    color: @color_3;
+    display: block;
+    float: right;
+    font-size: 12px;
+    padding: 4px;
+    text-align: center;
+    width: 105px;
+}
+.fieldset .form_error {
+    color: @color_2;
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Logicrays
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Logicrays
+ * @package     Logicrays_StockNotification
+ * @copyright   Copyright (c) Logicrays (https://www.logicrays.com/)
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Logicrays_StockNotification::menu" title="Out Of Stock Notification" module="Logicrays_StockNotification" sortOrder="10" resource="Logicrays_StockNotification::menu" parent="Logicrays_Base::base"/>
+        <add id="Logicrays_StockNotification::menu_item" title="Out Of Stock Notification" module="Logicrays_StockNotification" sortOrder="20" parent="Logicrays_StockNotification::menu" action="stocknotification/stocknotification" resource="Logicrays_StockNotification::menu_item"/>
+    	<add id="Logicrays_StockNotification::productnotification" title="Product Out Of Stock Notification" module="Logicrays_StockNotification" sortOrder="30" parent="Logicrays_StockNotification::menu" action="stocknotification/productnotification/productgrid" resource="Logicrays_StockNotification::productnotification"/>
+    </menu>
+</config>

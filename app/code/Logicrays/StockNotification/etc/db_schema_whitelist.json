@@ -1,0 +1,40 @@
+{
+    "logicrays_stocknotification_records": {
+        "column": {
+            "entity_id": true,
+            "websitename": true,
+            "product_id": true,
+            "product_name": true,
+            "product_sku": true,
+            "subscriber_name": true,
+            "subscriber_email": true,
+            "subscriber_mobile": true,
+            "created_at": true,
+            "notification_status": true
+        },
+        "index": {
+            "FTI_F131DFFD40DE72D19E622E69D6064CFF": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "logicrays_stocknotification_product_records": {
+        "column": {
+            "entity_id": true,
+            "product_id": true,
+            "product_name": true,
+            "product_sku": true,
+            "total_notification": true,
+            "pending_notification": true,
+            "created_at": true,
+            "notification_status": true
+        },
+        "index": {
+            "FTI_7FB38C03B99178EC50153CD023ADE954": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

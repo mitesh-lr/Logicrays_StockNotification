@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Logicrays
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Logicrays
+ * @package     Logicrays_StockNotification
+ * @copyright   Copyright (c) Logicrays (https://www.logicrays.com/)
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Logicrays\StockNotification\Api\Data\StockNotificationInterface" type="Logicrays\StockNotification\Model\StockNotification" />
+
+    <virtualType name="Logicrays\StockNotification\Model\ResourceModel\StockNotification\StockNotification\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">logicrays_stocknotification_records</argument>
+            <argument name="resourceModel" xsi:type="string">Logicrays\StockNotification\Model\ResourceModel\StockNotification</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="stocknotification_record_stocknotification_list_data_source" xsi:type="string">Logicrays\StockNotification\Model\ResourceModel\StockNotification\StockNotification\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Logicrays\StockNotification\Model\ResourceModel\Productnotification\Productnotification\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">logicrays_stocknotification_product_records</argument>
+            <argument name="resourceModel" xsi:type="string">Logicrays\StockNotification\Model\ResourceModel\Productnotification</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="stocknotification_record_productnotification_list_data_source" xsi:type="string">Logicrays\StockNotification\Model\ResourceModel\Productnotification\Productnotification\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Logicrays\StockNotification\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Logicrays\StockNotification\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">customLogHandler</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Logicrays\StockNotification\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
+        

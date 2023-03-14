@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Logicrays
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Logicrays
+ * @package     Logicrays_StockNotification
+ * @copyright   Copyright (c) Logicrays (https://www.logicrays.com/)
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="stocknotification" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Out Of Stock Notification</label>
+            <tab>logicrays</tab>
+            <resource>Logicrays_StockNotification::stocknotification_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field> 
+                <field id="customerlist" translate="label" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Select Customer Groups</label>
+                    <source_model>Logicrays\StockNotification\Model\Config\Source\Customer\Group</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="notificationtype" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Type</label>
+                    <source_model>Logicrays\StockNotification\Model\Config\Source\Notificationtype</source_model>
+                </field>
+                 <field id="sender_email_identity" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+
+                <field id="admin_email_notification" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Admin Email For Out Of Stock Notification</label>
+                    <validate>validate-email</validate>
+                </field>
+
+                <field id="email_template" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Out Of Stock Notification Email Template For Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+
+                <field id="email_template_admin" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Out Of Stock Notification Email Template For Admin</label>
+                   <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+
+                <field id="email_template_instock" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Instock Notification Email Template For Customer </label>
+                   <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field> 
+            </group>
+            <group id="smsgatways" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                <label>Sms Configuration</label>
+                <field id="smsmsg91senderid" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label> Sender ID</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="smsmsg91authkey" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label> Authentication Key</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="smsmsg91apiurl" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API URL</label>
+                    <comment><![CDATA[https://control.msg91.com/api/sendhttp.php]]></comment>
+                    <validate>required-entry validate-url</validate>
+                </field>
+                <field id="template" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                     <label>Out Of Stock Notification SMS Text</label>
+                     <depends><field id="enable">1</field></depends>
+                     <comment><![CDATA[<b>Variables : </b>{{var product}},{{var producturl}} ]]></comment>
+                </field>
+                <field id="enableadmin" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Out Of Stock Notification SMS For Admin</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="mobilenumber" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Admin Mobile Number For Out Of Stock Notification SMS</label>
+                    <depends><field id="enableadmin">1</field></depends>
+                    <comment><![CDATA[Enter Mobile Number To Out of Stock Notification Message]]></comment>
+                </field>
+                <field id="admintemplate" type="textarea" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Out Of Stock Notification SMS Text For Admin</label>
+                    <depends><field id="enable">1</field></depends>
+                    <comment><![CDATA[<b>Variables : </b>{{var product}},{{var customername}} ]]></comment>
+                </field>
+            </group> 
+            <group id="frontlable" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Frontend Labels</label>
+                <field id="notification_title" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Title</label>
+                </field>
+                <field id="button_title" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Text</label>
+                </field>
+                <field id="sucsess_message" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Success Message</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
